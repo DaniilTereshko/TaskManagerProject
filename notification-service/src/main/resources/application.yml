@@ -1,0 +1,13 @@
+spring:
+  mail:
+    port: 587
+    host: smtp.gmail.com
+    username: taskmanager213@gmail.com
+    password: hkxgqsnzvuawxalv
+    transport.protocol: smtp
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+
+server:
+  port: 81

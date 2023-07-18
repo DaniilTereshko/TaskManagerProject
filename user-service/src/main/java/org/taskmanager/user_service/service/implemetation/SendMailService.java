@@ -10,7 +10,7 @@ import org.taskmanager.user_service.service.api.ISendMailService;
 import java.util.UUID;
 
 public class SendMailService implements ISendMailService {
-    private static final String EMAIL_SERVICE_URL = "http://localhost:1010/notification-service-1.0-SNAPSHOT/app/activate";//TODO убрать
+    private static final String EMAIL_SERVICE_URL = "http://localhost:81/activate";//TODO убрать
     private RestTemplate restTemplate = new RestTemplate();//TODO bean??
     @Override
     public UUID sendActivateMail(UserDTO userDTO) {
