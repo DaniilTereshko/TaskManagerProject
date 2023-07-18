@@ -4,7 +4,7 @@ CREATE TABLE user_service.users
     fio text NOT NULL,
     role text,
     user_status text NOT NULL,
-    activation_code text,
+    activation_code uuid,
     email text NOT NULL,
     tg text,
     notification_method text,
