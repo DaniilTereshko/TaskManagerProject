@@ -2,8 +2,8 @@ C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskman
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\dto\base\UserRegistrationDTO.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\service\implemetation\UserService.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\service\api\ISendMailService.java
+C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\UserServiceApplication.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\converters\UserDTOToUserConverter.java
-C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\Main.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\dto\update\UserUpdateDTO.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\converters\UserToUserDTOConverter.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\enums\UserStatus.java
@@ -17,6 +17,5 @@ C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskman
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\dto\base\UserPageDTO.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\config\UserServiceConfig.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\dto\create\UserCreateDTO.java
-C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\config\AppInitializer.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\config\WebUserServiceConfig.java
 C:\Users\danii\Desktop\TaskManagerProject\user-service\src\main\java\org\taskmanager\user_service\core\enums\UserRole.java
