@@ -1,6 +1,7 @@
-package org.taskmanager.notification_service.core;
+package org.taskmanager.notification_service.core.dto.create;
 
-import java.util.UUID;
+import org.taskmanager.notification_service.core.enums.NotificationMethod;
+import org.taskmanager.notification_service.core.dto.base.UserDTO;
 
 public class NotificationCreateDTO {
     private UserDTO user;

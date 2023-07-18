@@ -1,4 +1,4 @@
-package org.taskmanager.notification_service.core;
+package org.taskmanager.notification_service.core.dto.base;
 
 import java.util.UUID;
 
