@@ -56,7 +56,7 @@ public class UserController {
         //TODO feign
 
         userUpdateDTO.setUpdateDate(updateDate);
-        userUpdateDTO.setUuid(uuid);
+        userUpdateDTO.setUuid(uuid);//TODO возвращение
 
         User updatedUser = userService.update(userUpdateDTO);
         UserDTO userDTO = this.conversionService.convert(updatedUser, UserDTO.class);
