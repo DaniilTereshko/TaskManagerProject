@@ -12,3 +12,6 @@ spring:
     password: R2-D2-F1-L1
 server:
   port: 80
+
+notification-service:
+  url: http://localhost:81/activate
