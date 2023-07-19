@@ -1,0 +1,7 @@
+Hello, [[name]]!
+
+Thank you for signing up for our service. We're excited to have you on board!
+Your activation url: http://localhost:80/verification?code=[[code]]&email=[[email]]
+
+Best regards,
+Your Team

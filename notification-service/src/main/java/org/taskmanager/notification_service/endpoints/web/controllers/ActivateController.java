@@ -8,7 +8,7 @@ import org.taskmanager.notification_service.core.dto.create.NotificationDTO;
 import org.taskmanager.notification_service.service.api.INotificationSenderService;
 
 @RestController
-@RequestMapping("/activate")
+@RequestMapping("/sender")
 public class ActivateController {
     private final INotificationSenderService notificationSenderService;
 
