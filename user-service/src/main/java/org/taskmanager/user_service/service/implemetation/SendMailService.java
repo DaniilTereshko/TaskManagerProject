@@ -7,32 +7,36 @@ import org.taskmanager.user_service.core.dto.create.NotificationCreateDTO;
 import org.taskmanager.user_service.core.enums.NotificationMethod;
 import org.taskmanager.user_service.core.dto.base.UserDTO;
 import org.taskmanager.user_service.service.api.ISendMailService;
+import org.taskmanager.user_service.service.services.api.INotificationServiceFeignClient;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import java.util.UUID;
 
 public class SendMailService implements ISendMailService {
-    private static final String EMAIL_SERVICE_URL = "http://localhost:81/activate";//TODO убрать
-    private final NotificationServiceProperty notificationServiceProperty;
-    private RestTemplate restTemplate = new RestTemplate();//TODO bean??
+    private final INotificationServiceFeignClient notificationServiceFeignClient;
+    private final TemplateEngine templateEngine;
 
-    public SendMailService(NotificationServiceProperty notificationServiceProperty) {
-        this.notificationServiceProperty = notificationServiceProperty;
+
+    public SendMailService(INotificationServiceFeignClient notificationServiceFeignClient, TemplateEngine templateEngine) {
+        this.notificationServiceFeignClient = notificationServiceFeignClient;
+        this.templateEngine = templateEngine;
     }
 
     @Override
     public UUID sendActivateMail(UserDTO userDTO) {
         NotificationCreateDTO notificationCreateDTO = new NotificationCreateDTO(userDTO, NotificationMethod.EMAIL, false);
-        String mailText = "Hello %s! This is your activation url: %s";
         UUID uuidMail = UUID.randomUUID();
-        String text = String.format(mailText, userDTO.getFio(), notificationServiceProperty.getUrl());
-        notificationCreateDTO.setText(text);
-        //TODO ??? //Thymleaf //openfien
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<NotificationCreateDTO> requestEntity = new HttpEntity<>(notificationCreateDTO, headers);
 
-        ResponseEntity<Void> responseEntity = restTemplate.exchange(EMAIL_SERVICE_URL, HttpMethod.POST, requestEntity, Void.class);
-        System.out.println("УРА");
+        Context context = new Context();
+        context.setVariable("name", userDTO.getFio());
+        context.setVariable("code", uuidMail);
+        context.setVariable("email", userDTO.getMail()); //TODO перенести текст в настройки
+        String text = templateEngine.process("activation-email-template.txt", context);
+
+        notificationCreateDTO.setText(text);
+        //TODO ??? //Load balancer does not contain an instance for the service notification-service
+        notificationServiceFeignClient.activate(notificationCreateDTO);
         return uuidMail;
     }
 }

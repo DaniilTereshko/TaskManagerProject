@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: user-service
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -10,8 +12,18 @@ spring:
     url: jdbc:postgresql://localhost:5432/user_service
     username: postgres
     password: R2-D2-F1-L1
+
+    thymeleaf:
+      enabled: true
+      prefix: templates/
+      suffix: .txt
 server:
   port: 80
 
-notification-service:
-  url: http://localhost:81/activate
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
