@@ -6,6 +6,7 @@ import org.springframework.core.convert.converter.GenericConverter;
 import org.taskmanager.user_service.core.dto.create.UserCreateDTO;
 import org.taskmanager.user_service.core.dto.update.UserUpdateDTO;
 import org.taskmanager.user_service.dao.entity.User;
+import org.taskmanager.user_service.endpoints.web.exception_hendler.exception.ConversionTypeException;
 
 import java.util.Set;
 
@@ -34,6 +35,6 @@ public class GenericUserDTOToUserConverter implements GenericConverter {
                     dto.getStatus(), dto.getMail(), dto.getPassword(),
                     dto.getUpdateDate());
         }
-        return new RuntimeException();//TODO user c null
+        return new ConversionTypeException("Ошибка конвертации из DTO в entity");
     }
 }
