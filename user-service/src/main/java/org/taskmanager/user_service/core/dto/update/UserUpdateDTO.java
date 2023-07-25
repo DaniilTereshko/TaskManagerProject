@@ -1,20 +1,24 @@
 package org.taskmanager.user_service.core.dto.update;
 
+import org.taskmanager.user_service.core.enums.UserRole;
+import org.taskmanager.user_service.core.enums.UserStatus;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class UserUpdateDTO {
     private UUID uuid;
     private String fio;
     private String mail;
-    private String role;
-    private String status;
+    private UserRole role;
+    private UserStatus status;
     private String password;
-    private Long updateDate;
+    private LocalDateTime updateDate;
 
     public UserUpdateDTO() {
     }
 
-    public UserUpdateDTO(UUID uuid, String fio, String mail, String role, String status, String password, Long updateDate) {
+    public UserUpdateDTO(UUID uuid, String fio, String mail, UserRole role, UserStatus status, String password, LocalDateTime updateDate) {
         this.uuid = uuid;
         this.fio = fio;
         this.mail = mail;
@@ -48,19 +52,19 @@ public class UserUpdateDTO {
         this.mail = mail;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
-    public String getStatus() {
+    public UserStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 
@@ -72,11 +76,11 @@ public class UserUpdateDTO {
         this.password = password;
     }
 
-    public Long getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Long updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 }

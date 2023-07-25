@@ -9,7 +9,7 @@ import java.time.ZoneOffset;
 public class UserToUserDTOConverter implements Converter<User, UserDTO> {
     @Override
     public UserDTO convert(User user) {
-        UserDTO userDTO = new UserDTO(user.getUuid(), user.getFio(), user.getEmail(), user.getUserRole().name(), user.getUserStatus().name());
+        UserDTO userDTO = new UserDTO(user.getUuid(), user.getFio(), user.getEmail(), user.getRole(), user.getStatus());
         if(user.getCreateDate() != null){
             userDTO.setCreateDate(user.getCreateDate().toInstant(ZoneOffset.UTC).toEpochMilli());
         }
