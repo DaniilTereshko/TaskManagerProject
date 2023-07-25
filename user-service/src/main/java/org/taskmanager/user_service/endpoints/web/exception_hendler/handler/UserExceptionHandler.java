@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.taskmanager.user_service.core.enums.ErrorType;
 import org.taskmanager.user_service.core.errors.ErrorResponse;
 import org.taskmanager.user_service.core.errors.StructuredErrorResponse;
+import org.taskmanager.user_service.endpoints.web.exception_hendler.exception.ConversionTypeException;
 import org.taskmanager.user_service.endpoints.web.exception_hendler.exception.EmailAlreadyTakenException;
 import org.taskmanager.user_service.endpoints.web.exception_hendler.exception.NoSuchUserException;
 import org.taskmanager.user_service.endpoints.web.exception_hendler.exception.VersionsMatchException;
@@ -37,6 +38,7 @@ public class UserExceptionHandler {
             IOException.class,
             IndexOutOfBoundsException.class,
             ArithmeticException.class,
+            ConversionTypeException.class,
             Error.class
     })
     public ResponseEntity<ErrorResponse> handleInnerError(){
@@ -49,9 +51,10 @@ public class UserExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(EmailAlreadyTakenException.class)
-    public ResponseEntity<ErrorResponse> handleEmailTakenError(EmailAlreadyTakenException exception){
-        ErrorResponse response = new ErrorResponse(ErrorType.ERROR, "Пользователь с такой почтой уже зарегистрирован: " + exception.getEmail());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);//TODO стркутурная
+    public ResponseEntity<StructuredErrorResponse> handleEmailTakenError(EmailAlreadyTakenException exception){
+        StructuredErrorResponse response = new StructuredErrorResponse(ErrorType.STRUCTURED_ERROR, new HashMap<>());
+        response.getErrors().put("email", "Пользователь с такой почтой уже зарегистрирован: " + exception.getEmail());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(VersionsMatchException.class)
     public ResponseEntity<ErrorResponse> handleVersionsMathError(VersionsMatchException exception){
