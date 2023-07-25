@@ -1,16 +1,23 @@
 package org.taskmanager.user_service.core.dto.create;
 
+import org.taskmanager.user_service.core.enums.UserRole;
+import org.taskmanager.user_service.core.enums.UserStatus;
+
 public class UserCreateDTO {
     private String fio;
+
     private String mail;
-    private String role;
-    private String status;
+
+    private UserRole role;
+
+    private UserStatus status;
+
     private String password;
 
     public UserCreateDTO() {
     }
 
-    public UserCreateDTO(String fio, String mail, String role, String status) {
+    public UserCreateDTO(String fio, String mail, UserRole role, UserStatus status) {
         this.fio = fio;
         this.mail = mail;
         this.role = role;
@@ -33,19 +40,19 @@ public class UserCreateDTO {
         this.mail = mail;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
-    public String getStatus() {
+    public UserStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 

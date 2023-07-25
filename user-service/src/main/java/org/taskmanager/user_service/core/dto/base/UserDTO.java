@@ -1,20 +1,26 @@
 package org.taskmanager.user_service.core.dto.base;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.taskmanager.user_service.core.enums.UserRole;
+import org.taskmanager.user_service.core.enums.UserStatus;
+
 import java.util.UUID;
 
 public class UserDTO {
     private UUID uuid;
     private String fio;
     private String mail;
-    private String role;
-    private String status;
+    private UserRole role;
+    private UserStatus status;
+    @JsonProperty("dt_create")
     private Long createDate;
+    @JsonProperty("dt_update")
     private Long updateDate;
 
     public UserDTO() {
     }
 
-    public UserDTO(UUID uuid, String fio, String mail, String role, String status) {
+    public UserDTO(UUID uuid, String fio, String mail, UserRole role, UserStatus status) {
         this.uuid = uuid;
         this.fio = fio;
         this.mail = mail;
@@ -22,7 +28,7 @@ public class UserDTO {
         this.status = status;
     }
 
-    public UserDTO(UUID uuid, String fio, String mail, String role, String status, Long updateDate) {
+    public UserDTO(UUID uuid, String fio, String mail, UserRole role, UserStatus status, Long updateDate) {
         this.uuid = uuid;
         this.fio = fio;
         this.mail = mail;
@@ -31,14 +37,14 @@ public class UserDTO {
         this.updateDate = updateDate;
     }
 
-    public UserDTO(String fio, String mail, String role, String status) {
+    public UserDTO(String fio, String mail, UserRole role, UserStatus status) {
         this.fio = fio;
         this.mail = mail;
         this.role = role;
         this.status = status;
     }
 
-    public UserDTO(UUID uuid, String fio, String mail, String role, String status, Long createDate, Long updateDate) {
+    public UserDTO(UUID uuid, String fio, String mail, UserRole role, UserStatus status, Long createDate, Long updateDate) {
         this.uuid = uuid;
         this.fio = fio;
         this.mail = mail;
@@ -72,19 +78,19 @@ public class UserDTO {
         this.mail = mail;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
-    public String getStatus() {
+    public UserStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 

@@ -1,6 +1,8 @@
 package org.taskmanager.user_service.dao.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Validator;
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,19 +15,25 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Validator {
+    @NotNull(message = "Идентификатор пользователя обязателен")
     @Id
     private UUID uuid;
+    @NotBlank(message = "Ф.И.О. обязательно")
     @Column(name = "fio", nullable = false)
     private String fio;
+    @NotNull(message = "Роль пользователя обязателена")
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private UserRole userRole;
+    private UserRole role;
+    @NotNull(message = "Статус пользователя обязателен")
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status", nullable = false)
-    private UserStatus userStatus;
+    private UserStatus status;
     @Column(name = "activation_code")
     private UUID activationCode;
+    @NotBlank(message = "Почта обязательна")
+    @Email(message = "Почта некорректна")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
     @Column(name = "tg", unique = true)
@@ -33,30 +41,44 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "notification_method")
     private NotificationMethod notificationMethod;
+    @NotBlank(message = "Пароль обязателен")
     @Column(name = "password", nullable = false)
     private String password;
+    @PastOrPresent(message = "Дата создания некорректна")
     @CreationTimestamp(source = SourceType.DB)
     @Column(name = "create_date", precision = 3)
     private LocalDateTime createDate;
-    @UpdateTimestamp(source = SourceType.DB)//TODO DB or VM
+    @PastOrPresent(message = "Дата обновления некорректна")
+    @UpdateTimestamp(source = SourceType.DB)
     @Version
     @Column(name = "update_date", precision = 3)
     private LocalDateTime updateDate;
 
     public User() {
     }
-
-    public User(UUID uuid, String fio, String email) {
-        this.uuid = uuid;
+    public User(String fio, String email, String password, UserRole role, UserStatus status) {
         this.fio = fio;
+        this.role = role;
+        this.status = status;
         this.email = email;
+        this.password = password;
     }
 
-    public User(UUID uuid, String fio, UserRole userRole, UserStatus userStatus, UUID activationCode, String email, String tg, NotificationMethod notificationMethod, String password, LocalDateTime createDate, LocalDateTime updateDate) {
+    public User(UUID uuid, String fio, UserRole role, UserStatus status, String email, String password, LocalDateTime updateDate) {
         this.uuid = uuid;
         this.fio = fio;
-        this.userRole = userRole;
-        this.userStatus = userStatus;
+        this.role = role;
+        this.status = status;
+        this.email = email;
+        this.password = password;
+        this.updateDate = updateDate;
+    }
+
+    public User(UUID uuid, String fio, UserRole role, UserStatus status, UUID activationCode, String email, String tg, NotificationMethod notificationMethod, String password, LocalDateTime createDate, LocalDateTime updateDate) {
+        this.uuid = uuid;
+        this.fio = fio;
+        this.role = role;
+        this.status = status;
         this.activationCode = activationCode;
         this.email = email;
         this.tg = tg;
@@ -82,20 +104,20 @@ public class User {
         this.fio = fio;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
-    public UserStatus getUserStatus() {
-        return userStatus;
+    public UserStatus getStatus() {
+        return status;
     }
 
-    public void setUserStatus(UserStatus userStatus) {
-        this.userStatus = userStatus;
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 
     public UUID getActivationCode() {
@@ -163,8 +185,8 @@ public class User {
 
         if (getUuid() != null ? !getUuid().equals(user.getUuid()) : user.getUuid() != null) return false;
         if (getFio() != null ? !getFio().equals(user.getFio()) : user.getFio() != null) return false;
-        if (getUserRole() != user.getUserRole()) return false;
-        if (getUserStatus() != user.getUserStatus()) return false;
+        if (getRole() != user.getRole()) return false;
+        if (getStatus() != user.getStatus()) return false;
         if (getActivationCode() != null ? !getActivationCode().equals(user.getActivationCode()) : user.getActivationCode() != null)
             return false;
         if (getEmail() != null ? !getEmail().equals(user.getEmail()) : user.getEmail() != null) return false;
@@ -181,8 +203,8 @@ public class User {
     public int hashCode() {
         int result = getUuid() != null ? getUuid().hashCode() : 0;
         result = 31 * result + (getFio() != null ? getFio().hashCode() : 0);
-        result = 31 * result + (getUserRole() != null ? getUserRole().hashCode() : 0);
-        result = 31 * result + (getUserStatus() != null ? getUserStatus().hashCode() : 0);
+        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
         result = 31 * result + (getActivationCode() != null ? getActivationCode().hashCode() : 0);
         result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
         result = 31 * result + (getTg() != null ? getTg().hashCode() : 0);

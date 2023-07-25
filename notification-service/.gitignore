@@ -32,6 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 .mvn
-user-service.iml
+verificationToken-service.iml
 mvnw.cmd
 target
