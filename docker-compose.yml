@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+  db:
+    build: postgresql
+    image: taskmanager_postgresql:1.0.0
+    restart: always
+    environment:
+      POSTGRES_USER: user_s
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./postgresql/user-service/ddl/0_init.sql:/docker-entrypoint-initdb.d/0_init.sql
+    networks:
+      - taskmanager_ntwrk
+  pgadmin:
+    build: pgadmin
+    image: taskmanager_pgadmin:1.0.0
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "82:80"
+    networks:
+      - taskmanager_ntwrk
+
+networks:
+  taskmanager_ntwrk:
+    name: taskmanager_ntwrk
