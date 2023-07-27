@@ -222,4 +222,4 @@ Temporary Items
 .apdisk
 
 # database
-/postgres-data
+postgres-data/
