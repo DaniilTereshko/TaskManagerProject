@@ -223,3 +223,9 @@ Temporary Items
 
 # database
 postgres-data/
+
+#maven
+mvnw
+mvnv.cmd
+HELP.md
+.mvn
