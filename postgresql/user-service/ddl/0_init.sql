@@ -1,3 +1,5 @@
+CREATE SCHEMA user_service
+    AUTHORIZATION user_s;
 CREATE TABLE user_service.users
 (
     uuid uuid,
@@ -17,4 +19,4 @@ CREATE TABLE user_service.users
 );
 
 ALTER TABLE IF EXISTS user_service.users
-    OWNER to postgres;
+    OWNER to user_s;
