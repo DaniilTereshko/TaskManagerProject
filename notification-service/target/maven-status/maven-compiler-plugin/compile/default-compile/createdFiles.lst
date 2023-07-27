@@ -1,7 +1,0 @@
-org\taskmanager\Main.class
-org\taskmanager\notification_service\core\NotificationMethod.class
-org\taskmanager\notification_service\config\AppInitializer.class
-org\taskmanager\notification_service\config\NotificationServiceConfig.class
-org\taskmanager\notification_service\core\UserDTO.class
-org\taskmanager\notification_service\core\NotificationCreateDTO.class
-org\taskmanager\notification_service\endpoints\web\controllers\ActivateController.class

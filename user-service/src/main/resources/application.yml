@@ -13,10 +13,6 @@ spring:
     username: postgres
     password: R2-D2-F1-L1
 
-    thymeleaf:
-      enabled: true
-      prefix: templates/
-      suffix: .txt
 server:
   port: 80
 

@@ -9,9 +9,11 @@ public class ConversionServiceFactory extends ConversionServiceFactoryBean {
     public void afterPropertiesSet() {
         super.afterPropertiesSet();
         ConversionService conversionService = getObject();
-        ConverterRegistry registry = (ConverterRegistry) conversionService;
-        registry.addConverter(new UserPageToUserPageDTOConverter(conversionService));
-        registry.addConverter(new GenericUserDTOToUserConverter());
-        registry.addConverter(new UserToUserDTOConverter());
+        if(conversionService != null) {
+            ConverterRegistry registry = (ConverterRegistry) conversionService;
+            registry.addConverter(new UserPageToUserPageDTOConverter(conversionService));
+            registry.addConverter(new GenericUserDTOToUserConverter());
+            registry.addConverter(new UserToUserDTOConverter());
+        }
     }
 }
