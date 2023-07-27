@@ -14,7 +14,7 @@ public class StructuredErrorResponseSerializer extends JsonObjectSerializer<Stru
     protected void serializeObject(StructuredErrorResponse value, JsonGenerator gen, SerializerProvider provider) throws IOException {
         gen.writeStringField("logref", value.getLogref().name().toLowerCase());
         gen.writeArrayFieldStart("errors");
-        value.getErrors().forEach((key, value1) -> {//TODO JsON
+        value.getErrors().forEach((key, value1) -> {
             try {
                 gen.writeStartObject();
                 gen.writeStringField("field", StringUtils.uncapitalize(key).replaceAll("([a-z])([A-Z])", "$1_$2").toLowerCase());

@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: notification-service
+  mail:
+    port: 587
+    host: smtp.gmail.com
+    username: taskmanager213@gmail.com
+    password: hkxgqsnzvuawxalv
+    transport.protocol: smtp
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+
+server:
+  port: 81
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true

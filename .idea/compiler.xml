@@ -7,14 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="authentication-service" />
+        <module name="eureka-naming-service" />
         <module name="user-service" />
         <module name="notification-service" />
-        <module name="eureka-naming-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="authentication-service" target="17" />
       <module name="eureka-naming-server" target="17" />
+      <module name="eureka-naming-service" target="17" />
       <module name="notification-service" target="17" />
       <module name="user-service" target="17" />
     </bytecodeTargetLevel>
@@ -23,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="authentication-service" options="-parameters" />
       <module name="eureka-naming-server" options="-parameters" />
+      <module name="eureka-naming-service" options="-parameters" />
       <module name="notification-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

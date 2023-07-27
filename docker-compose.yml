@@ -5,12 +5,13 @@ services:
     image: taskmanager_postgresql:1.0.0
     restart: always
     environment:
-      POSTGRES_USER: user_s
+      POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     volumes:
       - ./postgresql/user-service/ddl/0_init.sql:/docker-entrypoint-initdb.d/0_init.sql
     networks:
       - taskmanager_ntwrk
+
   pgadmin:
     build: pgadmin
     image: taskmanager_pgadmin:1.0.0
@@ -22,6 +23,34 @@ services:
       - ./postgres-data:/var/lib/postgresql/data
     ports:
       - "82:80"
+    networks:
+      - taskmanager_ntwrk
+
+  eureka-naming-service:
+    build: eureka-naming-service
+    image: eureka-naming-service:1.0.0
+    environment:
+      SERVER_PORT: 8080
+    networks:
+      - taskmanager_ntwrk
+
+  user-service:
+    build: user-service
+    image: taskmanager_user-service:1.0.1
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/root
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      EUREKA_URI: http://eureka-naming-service:8080/eureka
+    networks:
+      - taskmanager_ntwrk
+
+  proxy:
+    build: proxy
+    image: taskmanager_proxy:1.0.0
+    ports:
+      - "80:80"
     networks:
       - taskmanager_ntwrk
 

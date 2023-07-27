@@ -1,8 +1,10 @@
 package org.taskmanager.user_service.dao.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.Validator;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,7 +17,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-public class User implements Validator {
+public class User {
     @NotNull(message = "Идентификатор пользователя обязателен")
     @Id
     private UUID uuid;
@@ -30,8 +32,6 @@ public class User implements Validator {
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status", nullable = false)
     private UserStatus status;
-    @Column(name = "activation_code")
-    private UUID activationCode;
     @NotBlank(message = "Почта обязательна")
     @Email(message = "Почта некорректна")
     @Column(name = "email", nullable = false, unique = true)
@@ -74,12 +74,11 @@ public class User implements Validator {
         this.updateDate = updateDate;
     }
 
-    public User(UUID uuid, String fio, UserRole role, UserStatus status, UUID activationCode, String email, String tg, NotificationMethod notificationMethod, String password, LocalDateTime createDate, LocalDateTime updateDate) {
+    public User(UUID uuid, String fio, UserRole role, UserStatus status, String email, String tg, NotificationMethod notificationMethod, String password, LocalDateTime createDate, LocalDateTime updateDate) {
         this.uuid = uuid;
         this.fio = fio;
         this.role = role;
         this.status = status;
-        this.activationCode = activationCode;
         this.email = email;
         this.tg = tg;
         this.notificationMethod = notificationMethod;
@@ -118,14 +117,6 @@ public class User implements Validator {
 
     public void setStatus(UserStatus status) {
         this.status = status;
-    }
-
-    public UUID getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(UUID activationCode) {
-        this.activationCode = activationCode;
     }
 
     public String getEmail() {
@@ -187,8 +178,6 @@ public class User implements Validator {
         if (getFio() != null ? !getFio().equals(user.getFio()) : user.getFio() != null) return false;
         if (getRole() != user.getRole()) return false;
         if (getStatus() != user.getStatus()) return false;
-        if (getActivationCode() != null ? !getActivationCode().equals(user.getActivationCode()) : user.getActivationCode() != null)
-            return false;
         if (getEmail() != null ? !getEmail().equals(user.getEmail()) : user.getEmail() != null) return false;
         if (getTg() != null ? !getTg().equals(user.getTg()) : user.getTg() != null) return false;
         if (getNotificationMethod() != user.getNotificationMethod()) return false;
@@ -205,7 +194,6 @@ public class User implements Validator {
         result = 31 * result + (getFio() != null ? getFio().hashCode() : 0);
         result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
-        result = 31 * result + (getActivationCode() != null ? getActivationCode().hashCode() : 0);
         result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
         result = 31 * result + (getTg() != null ? getTg().hashCode() : 0);
         result = 31 * result + (getNotificationMethod() != null ? getNotificationMethod().hashCode() : 0);

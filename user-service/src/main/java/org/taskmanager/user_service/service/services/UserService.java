@@ -47,7 +47,7 @@ public class UserService implements IUserService {
     @Override
     public User update(UserUpdateDTO item) {
         User user = conversionService.convert(item, User.class);
-        User currentUser = this.get(user.getUuid());//TODO странно
+        User currentUser = this.get(user.getUuid());
         user.setCreateDate(currentUser.getCreateDate());
         if (user.getUpdateDate().isEqual(currentUser.getUpdateDate())) {
             return userRepository.save(user);
