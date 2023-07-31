@@ -226,6 +226,6 @@ postgres-data/
 
 #maven
 mvnw
-mvnv.cmd
+.cmd
 HELP.md
-.mvn
+*.mvn

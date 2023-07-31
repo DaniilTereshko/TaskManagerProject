@@ -1,7 +1,7 @@
 FROM eclipse-temurin:19-jre-focal
 MAINTAINER Daniil_Tereshko
 
-ADD ./target/user-service.jar /app/
+ADD ./user-server/target/user-service.jar /app/
 
 CMD ["java", "-Xmx200m", "-jar", "/app/user-service.jar"]
 

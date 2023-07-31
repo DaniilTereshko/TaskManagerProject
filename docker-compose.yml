@@ -2,6 +2,8 @@ version: '3.5'
 services:
   db:
     build: postgresql
+    depends_on:
+      - pgadmin
     image: taskmanager_postgresql:1.0.0
     restart: always
     environment:
@@ -12,9 +14,23 @@ services:
     networks:
       - taskmanager_ntwrk
 
+  audit-db:
+    build: postgresql
+    depends_on:
+      - pgadmin
+    image: taskmanager_postgresql:1.0.3
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./postgresql/audit-service/ddl/0_init.sql:/docker-entrypoint-initdb.d/0_init.sql
+    networks:
+      - taskmanager_ntwrk
+
   pgadmin:
     build: pgadmin
-    image: taskmanager_pgadmin:1.0.0
+    image: taskmanager_pgadmin:1.0.4
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
@@ -26,29 +42,59 @@ services:
     networks:
       - taskmanager_ntwrk
 
+  swagger-ui:
+    build: swagger-ui
+    image: taskmanager_swagger-ui:1.0.0
+    ports:
+      - "81:8080"
+    networks:
+      - taskmanager_ntwrk
+
   eureka-naming-service:
     build: eureka-naming-service
-    image: eureka-naming-service:1.0.0
+    image: eureka-naming-service:1.0.14
+    ports:
+      - "84:8080"
     environment:
       SERVER_PORT: 8080
+
     networks:
       - taskmanager_ntwrk
 
   user-service:
     build: user-service
-    image: taskmanager_user-service:1.0.1
+    depends_on:
+      - db
+      - eureka-naming-service
+      - proxy
+    image: taskmanager_user-service:1.0.34
     environment:
       SERVER_PORT: 8080
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/root
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-      EUREKA_URI: http://eureka-naming-service:8080/eureka
+
+    networks:
+      - taskmanager_ntwrk
+
+  audit-service:
+    build: audit-service
+    depends_on:
+      - audit-db
+      - eureka-naming-service
+      - proxy
+    image: taskmanager_audit-service:1.0.25
+    environment:
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:postgresql://audit-db:5432/root
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
     networks:
       - taskmanager_ntwrk
 
   proxy:
     build: proxy
-    image: taskmanager_proxy:1.0.0
+    image: taskmanager_proxy:1.0.1
     ports:
       - "80:80"
     networks:
