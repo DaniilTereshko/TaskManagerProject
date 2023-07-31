@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: audit-service
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    properties:
+      hibernate.default_schema: audit_service
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/audit_service
+    username: postgres
+    password: R2-D2-F1-L1
+
+server:
+  port: 87
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-naming-service:8080/eureka/
+  instance:
+    hostname: eureka-naming-service
+    preferIpAddress: true
+

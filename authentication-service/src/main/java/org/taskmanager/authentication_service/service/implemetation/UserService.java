@@ -1,13 +1,12 @@
 package org.taskmanager.authentication_service.service.implemetation;
 
-import org.taskmanager.authentication_service.core.dto.base.UserDTO;
 import org.taskmanager.authentication_service.core.dto.base.UserRegistrationDTO;
 import org.taskmanager.authentication_service.core.dto.create.UserCreateDTO;
 import org.taskmanager.authentication_service.core.enums.UserRole;
 import org.taskmanager.authentication_service.core.enums.UserStatus;
 import org.taskmanager.authentication_service.service.api.INotificationService;
 import org.taskmanager.authentication_service.service.api.IUserService;
-import org.taskmanager.user_service.dao.entity.User;
+import org.taskmanager.user_server.dao.entity.User;
 
 import java.util.UUID;
 

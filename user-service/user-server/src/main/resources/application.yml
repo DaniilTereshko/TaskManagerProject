@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: user-service
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    properties:
+      hibernate.default_schema: user_service
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/user_service
+    username: postgres
+    password: R2-D2-F1-L1
+
+server:
+  port: 80
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-naming-service:8080/eureka/
+  instance:
+    hostname: eureka-naming-service
+    preferIpAddress: true
+
