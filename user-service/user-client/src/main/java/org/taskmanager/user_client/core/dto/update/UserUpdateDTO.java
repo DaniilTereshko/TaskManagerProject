@@ -1,5 +1,6 @@
 package org.taskmanager.user_client.core.dto.update;
 
+import jakarta.validation.constraints.*;
 import org.taskmanager.user_client.core.enums.UserRole;
 import org.taskmanager.user_client.core.enums.UserStatus;
 
@@ -7,11 +8,21 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class UserUpdateDTO {
+    @NotNull(message = "Идентификатор пользователя обязателен")
     private UUID uuid;
+    @NotBlank(message = "Ф.И.О. обязательно")
+    @Size(max = 255, message = "Максимальный размер Ф.И.О. 255 символов")
     private String fio;
+    @NotBlank(message = "Почта обязательна")
+    @Size(max = 255, message = "Максимальный размер адреса почты 255 символов")
+    @Email(message = "Почта некорректна")
     private String mail;
+    @NotNull(message = "Роль пользователя обязателена")
     private UserRole role;
+    @NotNull(message = "Статус пользователя обязателен")
     private UserStatus status;
+    @NotBlank(message = "Пароль обязателен")
+    @Size(min = 5, max = 25, message = "Длина пароля должна быть от 5 до 25 символов")
     private String password;
     private LocalDateTime updateDate;
 

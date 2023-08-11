@@ -9,9 +9,10 @@ import org.taskmanager.base_package.dto.PageDTO;
 import org.taskmanager.user_client.core.dto.base.UserDTO;
 import org.taskmanager.user_client.core.dto.create.UserCreateDTO;
 import org.taskmanager.user_client.core.dto.update.UserUpdateDTO;
+import org.taskmanager.user_server.core.dto.base.UserLoginDTO;
 import org.taskmanager.user_server.core.util.PageToPageDTOUtil;
 import org.taskmanager.user_server.dao.entity.User;
-import org.taskmanager.user_server.service.api.IUserService;
+import org.taskmanager.user_server.service.api.user.IUserService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -37,14 +38,15 @@ public class UserController {
     public ResponseEntity<PageDTO<UserDTO>> list(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size){
-        Page<User> users = userService.get(page, size);
-        PageDTO<UserDTO> userPageDTO = PageToPageDTOUtil.convert(users, conversionService);
+        Page<User> users = this.userService.get(page, size);
+        //PageDTO<UserDTO> userPageDTO = PageToPageDTOUtil.convert(users, this.conversionService);
+        PageDTO<UserDTO> userPageDTO = conversionService.convert(users, PageDTO.class);
         return new ResponseEntity<>(userPageDTO, HttpStatus.OK);
     }
 
     @GetMapping("/{uuid}")
     public ResponseEntity<UserDTO> findById(@PathVariable UUID uuid){
-        User user = userService.get(uuid);
+        User user = this.userService.get(uuid);
         UserDTO userDTO = this.conversionService.convert(user, UserDTO.class);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
@@ -55,7 +57,7 @@ public class UserController {
             @RequestBody UserUpdateDTO userUpdateDTO){
         userUpdateDTO.setUpdateDate(updateDate);
         userUpdateDTO.setUuid(uuid);
-        User updatedUser = userService.update(userUpdateDTO);
+        User updatedUser = this.userService.update(userUpdateDTO);
         UserDTO userDTO = this.conversionService.convert(updatedUser, UserDTO.class);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }

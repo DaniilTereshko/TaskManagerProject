@@ -1,0 +1,11 @@
+org\taskmanager\notification_service\endpoints\web\controllers\InternalNotificationController.class
+org\taskmanager\notification_service\service\implementation\EmailNotificationService.class
+org\taskmanager\notification_service\endpoints\web\filter\JwtFilter.class
+org\taskmanager\notification_service\NotificationServiceApplication.class
+org\taskmanager\notification_service\service\api\INotificationService.class
+org\taskmanager\notification_service\endpoints\web\util\JwtHandler.class
+org\taskmanager\notification_service\config\NotificationServiceConfig.class
+org\taskmanager\notification_service\config\property\MailProperty$Mail.class
+org\taskmanager\notification_service\config\property\MailProperty.class
+org\taskmanager\notification_service\config\property\JWTProperty.class
+org\taskmanager\notification_service\config\SecurityConfig.class

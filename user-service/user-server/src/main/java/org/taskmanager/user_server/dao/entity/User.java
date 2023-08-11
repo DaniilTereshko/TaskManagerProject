@@ -1,14 +1,10 @@
 package org.taskmanager.user_server.dao.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.taskmanager.user_client.core.enums.NotificationMethod;
+import org.taskmanager.audit_client.core.enums.NotificationMethod;
 import org.taskmanager.user_client.core.enums.UserRole;
 import org.taskmanager.user_client.core.enums.UserStatus;
 
@@ -18,22 +14,16 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 public class User {
-    @NotNull(message = "Идентификатор пользователя обязателен")
     @Id
     private UUID uuid;
-    @NotBlank(message = "Ф.И.О. обязательно")
     @Column(name = "fio", nullable = false)
     private String fio;
-    @NotNull(message = "Роль пользователя обязателена")
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private UserRole role;
-    @NotNull(message = "Статус пользователя обязателен")
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status", nullable = false)
     private UserStatus status;
-    @NotBlank(message = "Почта обязательна")
-    @Email(message = "Почта некорректна")
     @Column(name = "email", nullable = false, unique = true)
     private String email;
     @Column(name = "tg", unique = true)
@@ -41,14 +31,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "notification_method")
     private NotificationMethod notificationMethod;
-    @NotBlank(message = "Пароль обязателен")
     @Column(name = "password", nullable = false)
     private String password;
-    @PastOrPresent(message = "Дата создания некорректна")
     @CreationTimestamp(source = SourceType.DB)
     @Column(name = "create_date", precision = 3)
     private LocalDateTime createDate;
-    @PastOrPresent(message = "Дата обновления некорректна")
     @UpdateTimestamp(source = SourceType.DB)
     @Version
     @Column(name = "update_date", precision = 3)
@@ -57,6 +44,14 @@ public class User {
     public User() {
     }
     public User(String fio, String email, String password, UserRole role, UserStatus status) {
+        this.fio = fio;
+        this.role = role;
+        this.status = status;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String fio, UserRole role, UserStatus status, String email, String password) {
         this.fio = fio;
         this.role = role;
         this.status = status;
