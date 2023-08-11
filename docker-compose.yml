@@ -4,7 +4,7 @@ services:
     build: postgresql
     depends_on:
       - pgadmin
-    image: taskmanager_postgresql:1.0.0
+    image: taskmanager_postgresql:1.0.1
     restart: always
     environment:
       POSTGRES_USER: root
@@ -30,7 +30,7 @@ services:
 
   pgadmin:
     build: pgadmin
-    image: taskmanager_pgadmin:1.0.4
+    image: taskmanager_pgadmin:1.0.5
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
@@ -44,7 +44,7 @@ services:
 
   swagger-ui:
     build: swagger-ui
-    image: taskmanager_swagger-ui:1.0.0
+    image: taskmanager_swagger-ui:1.0.2
     ports:
       - "81:8080"
     networks:
@@ -52,7 +52,7 @@ services:
 
   eureka-naming-service:
     build: eureka-naming-service
-    image: eureka-naming-service:1.0.14
+    image: eureka-naming-service:1.0.15
     ports:
       - "84:8080"
     environment:
@@ -64,10 +64,8 @@ services:
   user-service:
     build: user-service
     depends_on:
-      - db
       - eureka-naming-service
-      - proxy
-    image: taskmanager_user-service:1.0.34
+    image: taskmanager_user-service:1.0.42
     environment:
       SERVER_PORT: 8080
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/root
@@ -82,7 +80,6 @@ services:
     depends_on:
       - audit-db
       - eureka-naming-service
-      - proxy
     image: taskmanager_audit-service:1.0.25
     environment:
       SERVER_PORT: 8080
@@ -94,7 +91,10 @@ services:
 
   proxy:
     build: proxy
-    image: taskmanager_proxy:1.0.1
+    depends_on:
+      - user-service
+      - audit-service
+    image: taskmanager_proxy:1.0.4
     ports:
       - "80:80"
     networks:

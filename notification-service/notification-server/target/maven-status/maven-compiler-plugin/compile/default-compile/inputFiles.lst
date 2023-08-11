@@ -1,0 +1,10 @@
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\endpoints\web\util\JwtHandler.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\config\NotificationServiceConfig.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\endpoints\web\filter\JwtFilter.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\config\property\MailProperty.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\config\SecurityConfig.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\service\implementation\EmailNotificationService.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\NotificationServiceApplication.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\service\api\INotificationService.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\endpoints\web\controllers\InternalNotificationController.java
+C:\Users\danii\Desktop\TaskManagerProject\notification-service\notification-server\src\main\java\org\taskmanager\notification_service\config\property\JWTProperty.java

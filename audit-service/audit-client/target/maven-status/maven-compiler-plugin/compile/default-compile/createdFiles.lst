@@ -2,4 +2,4 @@ org\taskmanager\audit_client\client\api\IAuditServiceClient.class
 org\taskmanager\audit_client\core\enums\EssenceType.class
 org\taskmanager\audit_client\core\dto\base\UserDTO.class
 org\taskmanager\audit_client\core\dto\base\AuditDTO.class
-org\taskmanager\audit_client\core\dto\creare\AuditCreateDTO.class
+org\taskmanager\audit_client\core\dto\create\AuditCreateDTO.class

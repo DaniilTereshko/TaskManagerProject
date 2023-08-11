@@ -1,0 +1,6 @@
+notifications:
+  verification:
+    subject: Activation letter
+    template: verification.html
+    properties:
+      token-name: token

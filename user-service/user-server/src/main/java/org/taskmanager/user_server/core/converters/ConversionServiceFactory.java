@@ -12,7 +12,9 @@ public class ConversionServiceFactory extends ConversionServiceFactoryBean {
         if(conversionService != null) {
             ConverterRegistry registry = (ConverterRegistry) conversionService;
             registry.addConverter(new GenericUserDTOToUserConverter());
-            registry.addConverter(new UserToUserDTOConverter());
+            registry.addConverter(new GenericUserToUserDTOConverter());
+            registry.addConverter(new UserToUserDetailsDTOConverter());
+            registry.addConverter(new PageToPageDTOConverter(conversionService));
         }
     }
 }

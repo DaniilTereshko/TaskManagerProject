@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: notification-service
+  mail:
+    port: 465
+    host: smtp.mail.ru
+    username: taskmanager315@mail.ru
+    password: 22b464bpMFZ6wpmkCWzN
+    properties:
+      "mail.smtp.ssl.enable": true
+      mail:
+        encoding: UTF-8
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8111
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+
+jwt:
+  secret: NDQ1ZjAzNjQtMzViZi00MDRjLTljZjQtNjNjYWIyZTU5ZDYw
+  issuer: TaskManager

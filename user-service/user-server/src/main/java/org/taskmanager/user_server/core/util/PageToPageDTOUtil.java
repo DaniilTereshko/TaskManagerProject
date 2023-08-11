@@ -6,7 +6,7 @@ import org.taskmanager.base_package.dto.PageDTO;
 import org.taskmanager.user_client.core.dto.base.UserDTO;
 import org.taskmanager.user_server.dao.entity.User;
 
-public class PageToPageDTOUtil {//TODO ???
+public class PageToPageDTOUtil {
 
     private PageToPageDTOUtil() {
     }

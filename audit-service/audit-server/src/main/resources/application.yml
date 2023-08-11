@@ -19,8 +19,12 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-naming-service:8080/eureka/
+      defaultZone: http://localhost:8080/eureka/
   instance:
-    hostname: eureka-naming-service
+    hostname: localhost
     preferIpAddress: true
+
+jwt:
+  secret: NDQ1ZjAzNjQtMzViZi00MDRjLTljZjQtNjNjYWIyZTU5ZDYw
+  issuer: TaskManager
 

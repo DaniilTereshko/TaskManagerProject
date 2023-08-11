@@ -1,0 +1,8 @@
+
+
+
+minio:
+  bucket: audit-report
+  url: http://localhost:85
+  accessKey: minioadmin
+  secretKey: minioadmin
