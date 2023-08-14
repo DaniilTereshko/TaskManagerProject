@@ -2,13 +2,13 @@ package org.taskmanager.report_server.core.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Report {
+public class ReportFile {
     private MultipartFile file;
 
-    public Report() {
+    public ReportFile() {
     }
 
-    public Report(MultipartFile file) {
+    public ReportFile(MultipartFile file) {
         this.file = file;
     }
 

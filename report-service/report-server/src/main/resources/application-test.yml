@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/report_service
+    username: postgres
+    password: R2-D2-F1-L1
+
+server:
+  port: 99
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+
+minio:
+  bucket: audit-report
+  url: http://localhost:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+
+jwt:
+  secret: NDQ1ZjAzNjQtMzViZi00MDRjLTljZjQtNjNjYWIyZTU5ZDYw
+  issuer: TaskManager

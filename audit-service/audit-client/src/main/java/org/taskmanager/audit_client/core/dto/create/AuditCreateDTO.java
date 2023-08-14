@@ -1,4 +1,4 @@
-package org.taskmanager.audit_client.core.dto.creare;
+package org.taskmanager.audit_client.core.dto.create;
 
 import org.taskmanager.audit_client.core.enums.EssenceType;
 import org.taskmanager.user_client.core.enums.UserRole;
@@ -6,7 +6,7 @@ import org.taskmanager.user_client.core.enums.UserRole;
 import java.util.UUID;
 
 public class AuditCreateDTO {
-    private UUID uuid;
+    private UUID user;
     private String mail;
     private String fio;
     private UserRole role;
@@ -17,8 +17,8 @@ public class AuditCreateDTO {
     public AuditCreateDTO() {
     }
 
-    public AuditCreateDTO(UUID uuid, String mail, String fio, UserRole role, String text, EssenceType type, String id) {
-        this.uuid = uuid;
+    public AuditCreateDTO(UUID user, String mail, String fio, UserRole role, String text, EssenceType type, String id) {
+        this.user = user;
         this.mail = mail;
         this.fio = fio;
         this.role = role;
@@ -27,20 +27,20 @@ public class AuditCreateDTO {
         this.id = id;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
     public String getMail() {
         return mail;
     }
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public UUID getUser() {
+        return user;
+    }
+
+    public void setUser(UUID user) {
+        this.user = user;
     }
 
     public String getFio() {

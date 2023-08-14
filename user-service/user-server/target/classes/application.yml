@@ -11,19 +11,19 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/user_service
-    username: postgres
-    password: R2-D2-F1-L1
+    url: jdbc:postgresql://user-db:5432/user-service
+    username: root
+    password: root
 
 server:
-  port: 89
+  port: 8080
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka/
+      defaultZone: http://eureka-naming-service:8080/eureka/
   instance:
-    hostname: localhost
+    hostname: eureka-naming-service
     preferIpAddress: true
 
 jwt:

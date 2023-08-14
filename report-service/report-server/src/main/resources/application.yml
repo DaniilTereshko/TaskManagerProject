@@ -1,8 +1,36 @@
+spring:
+  application:
+    name: report-service
 
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    properties:
+      hibernate.default_schema: report_service
 
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://report-db:5432/report-service
+    username: root
+    password: root
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-naming-service:8080/eureka/
+  instance:
+    hostname: eureka-naming-service
+    preferIpAddress: true
 
 minio:
   bucket: audit-report
-  url: http://localhost:85
+  url: http://minio:9000
   accessKey: minioadmin
   secretKey: minioadmin
+
+jwt:
+  secret: NDQ1ZjAzNjQtMzViZi00MDRjLTljZjQtNjNjYWIyZTU5ZDYw
+  issuer: TaskManager
