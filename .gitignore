@@ -224,6 +224,9 @@ Temporary Items
 # database
 postgres-data/
 
+#minio sotorage
+minio-data/
+
 #maven
 mvnw
 *.cmd

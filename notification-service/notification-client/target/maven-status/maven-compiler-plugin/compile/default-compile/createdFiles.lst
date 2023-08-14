@@ -1,3 +1,3 @@
-org\taskmanager\notification_client\client\api\INotificationServiceClient.class
-org\taskmanager\notification_client\core\enums\NotificationMethod.class
-org\taskmanager\notification_client\core\dto\create\NotificationCreateDTO.class
+org\taskmanager\audit_client\core\enums\NotificationMethod.class
+org\taskmanager\audit_client\core\dto\create\NotificationCreateDTO.class
+org\taskmanager\audit_client\client\api\INotificationServiceClient.class

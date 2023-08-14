@@ -13,12 +13,12 @@ public class AuditDTO {
     private EssenceType type;
     private String id;
     @JsonProperty("dt_create")
-    private LocalDateTime createDate;
+    private Long createDate;
 
     public AuditDTO() {
     }
 
-    public AuditDTO(UUID uuid, UserDTO user, String text, EssenceType type, String id, LocalDateTime createDate) {
+    public AuditDTO(UUID uuid, UserDTO user, String text, EssenceType type, String id, Long createDate) {
         this.uuid = uuid;
         this.user = user;
         this.text = text;
@@ -67,11 +67,11 @@ public class AuditDTO {
         this.id = id;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Long getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Long createDate) {
         this.createDate = createDate;
     }
 }
