@@ -9,7 +9,7 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://audit-db:5432/audit-service
+    url: jdbc:postgresql://task-db:5432/task-service
     username: root
     password: root
 
