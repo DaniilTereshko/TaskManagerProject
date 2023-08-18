@@ -59,7 +59,6 @@ public class ReportServiceExceptionHandler {
     }
     @ExceptionHandler(ReportNotReadyException.class)
     public ResponseEntity<ErrorResponse> handleReportNotReadyError(ReportNotReadyException exception){
-        ErrorResponse response = new ErrorResponse(ErrorType.ERROR, exception.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

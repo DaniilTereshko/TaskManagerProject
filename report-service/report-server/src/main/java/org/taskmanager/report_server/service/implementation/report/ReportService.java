@@ -24,7 +24,6 @@ import java.util.UUID;
 public class ReportService implements IReportService {
     private static final String NOT_AVAILABLE_DATA = "Нет доступных данных для формирования отчета";
     private static final String REPORT_NOT_FOUND = "Отчет не найден";
-    private static final String REPORT_NOT_READY = "Отчет не готов";
     private final IReportRepository reportRepository;
     private final IAuditService auditService;
     private final MinioAdapter minioAdapter;
@@ -70,9 +69,9 @@ public class ReportService implements IReportService {
     @Override
     public void isReady(UUID uuid) {
         Report report = this.reportRepository.findById(uuid)
-                .orElseThrow(() -> new ReportNotReadyException(REPORT_NOT_FOUND));
+                .orElseThrow(ReportNotReadyException::new);
         if (!report.getStatus().equals(ReportStatus.DONE)){
-            throw new ReportNotReadyException(REPORT_NOT_READY);
+            throw new ReportNotReadyException();
         }
     }
 }

@@ -99,7 +99,7 @@ services:
     depends_on:
       - user-db
       - eureka-naming-service
-    image: taskmanager_user-service:1.0.44
+    image: taskmanager_user-service:1.0.45
     networks:
       - taskmanager_ntwrk
 
@@ -108,7 +108,7 @@ services:
     depends_on:
       - audit-db
       - eureka-naming-service
-    image: taskmanager_audit-service:1.0.28
+    image: taskmanager_audit-service:1.0.29
     networks:
       - taskmanager_ntwrk
 
@@ -117,7 +117,7 @@ services:
     depends_on:
       - task-db
       - eureka-naming-service
-    image: taskmanager_task-service:1.0.2
+    image: taskmanager_task-service:1.0.4
     networks:
       - taskmanager_ntwrk
 
@@ -126,7 +126,7 @@ services:
     depends_on:
       - report-db
       - eureka-naming-service
-    image: taskmanager_report-service:1.0.6
+    image: taskmanager_report-service:1.0.7
     networks:
       - taskmanager_ntwrk
 

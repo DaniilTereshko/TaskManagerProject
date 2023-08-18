@@ -83,7 +83,7 @@ public class AuditReportService implements IAuditReportService {
             result.append(" - ").append(currentDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         }
         if (user != null) {
-            result.append(" По пользователю: [").append(user).append("]");//TODO исправить и не сохранить невалидный json
+            result.append(" По пользователю: [").append(user).append("]");
         }
         return result.toString();
     }
